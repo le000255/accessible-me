@@ -133,7 +133,7 @@ span.hamburger-btn {
 .hamburger-btn span {
   display: block;
   background-color: var(--cl-bg-primary);
-  height: 0.15rem;
+  height: 1.2px;
   width: 100%;
 }
 
