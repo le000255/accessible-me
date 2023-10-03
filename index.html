@@ -8,61 +8,110 @@
   <title>Accessible Me</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&family=Stick+No+Bills:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&family=Stick+No+Bills:wght@300&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
   <div class="container">
-    <div class="site-header">
-      <h1>Jam Box Studios</h1>
-      <div class="main-nav">
-        <ul>
+    <ul class="skip-links" role="banner">
+      <li class="skip-link"><a href="/#nav" tabindex="0">Skip to main navigation</a></li>
+      <li class="skip-link"><a href="/#main-content">Skip to main content</a></li>
+
+    </ul>
+    <!-- !ERROR: semantic tag not used - fixed  -->
+    <header class="site-header">
+      <span id="brand-name">Jam Box Studios</span>
+      <!-- !ERROR navigation syntax - fixed -->
+      <span class="hamburger-btn" tabindex="0" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <nav class="main-nav" id="nav">
+        <ul id="nav-links" class="">
           <li><a href="#">Home</a></li>
           <li><a href="#">Products</a></li>
           <li><a href="#">Reservation</a></li>
           <li><a href="#">Studio</a></li>
         </ul>
-      </div>
-      <img src="https://placekitten.com/1200/900" class="banner">
-    </div>
-    <div class="main-content">
-      <h1>Welcome to Jam Box</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus laboriosam praesentium nostrum ipsa eveniet, officia deserunt cumque eius esse enim, ipsam accusantium autem nihil quaerat sequi perferendis optio quia veritatis.</p>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam perferendis expedita sed itaque odit ipsam omnis, eos voluptates magni fugit culpa voluptatibus, inventore eaque, eligendi voluptatum! Voluptate iusto error voluptatibus.</p>
-      <div class="owner">
-        <h1>Meet the owner</h1>
-        <ul>
-          <li>Name: John Doe</li>
-          <li>Title: CEO</li>
-          <li>Email: johnjoe@jambox.ca</li>
-          <li>Phone: 613-000-0000</li>
+      </nav>
+    </header>
+    <!-- !ERROR: semantic tag not used - fixed  -->
+    <main class="main-content" id="main-content">
+      <section class="hero-section" id="hero">
+        <!-- !ERROR: missing alt  - fixed -->
+        <img src="https://placekitten.com/1200/900" class="banner" alt="portrait of a cat">
+        <div class="hero-content text-content">
+
+          <h1>Welcome to Jam Box</h1>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus laboriosam praesentium nostrum ipsa
+            eveniet, officia deserunt cumque eius esse enim, ipsam accusantium autem nihil quaerat sequi perferendis
+            optio
+            quia veritatis.</p>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam perferendis expedita sed itaque odit ipsam
+            omnis, eos voluptates magni fugit culpa voluptatibus, inventore eaque, eligendi voluptatum! Voluptate iusto
+            error voluptatibus.</p>
+        </div>
+      </section>
+
+      <section class="owner text-content">
+        <h2>Meet the owner</h2>
+        <ul itemscope itemtype="https://schema.org/Person">
+          <li>
+            <span class="owner-info-label">Name: </span>
+            <span itemprop="givenName">John Doe</span>
+          </li>
+          <li>
+            <span class="owner-info-label">Title: </span>
+            <span itemprop="jobTitle">CEO</span>
+          </li>
+          <li>
+            <span class="owner-info-label">Email: </span>
+            <span itemprop="email">johnjoe@jambox.ca</span>
+          </li>
+          <li>
+            <span class="owner-info-label">Phone: </span>
+            <span itemprop="telephone">613-000-0000</span>
+          </li>
         </ul>
-        <h1>Address</h1>
-        <p>
-          Jambox Studios
-          123 Guitar Road,
-          Musicville, Danceistan
-          B3T 0L0
-        </p>
-      </div>
-      <div class="contact-section">
-        <h1>Contact Us</h1>
+        <h2>Address</h2>
+        <address itemscope itemtype="https://schema.org/LocalBusiness">
+          <span itemprop="name">Jambox Studios</span>
+          <span itemscope itemtype="https://schema.org/PostalAddress">
+            <span itemprop="streetAddress">123 Guitar Road</span>,
+            <span itemprop="addressLocality">Musicville</span>,
+            <span itemprop="addressCountry">Danceistan</span>
+            <span itemprop="postalCode">B3T 0L0</span>
+          </span>
+        </address>
+      </section>
+      <section class="contact-section text-content">
+        <h2>Contact Us</h2>
+        <!-- !ERROR: missing form labels, missing "name" & "for" - fixed -->
         <form action="thanks.html">
-          <label>Full Name</label>
-          <input type="text" placeholder="Full Name">
-          <input type="text" placeholder="Email">
-          <input type="text" placeholder="Subject">
-          <b>Your Message</b>
-          <textarea></textarea>
-          <button type="submit">Send</button>
+          <label for="fullname">Full Name</label>
+          <input type="text" placeholder="Full Name" name="fullname" id="fullname" required>
+          <label for="email">Email</label>
+          <input type="email" placeholder="Email" name="email" id="email" required>
+          <label for="subject">Subject</label>
+          <input type="text" placeholder="Subject" name="subject" id="subject" required>
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" required></textarea>
+          <button type="submit" role="button">SEND</button>
         </form>
-      </div>
-    </div>
-    <div class="site-footer">
-      &copy; 2021 Jam Box Studios
-    </div>
+      </section>
+    </main>
+    <!-- !ERROR: semantic tag not used - fixed  -->
+    <footer class="site-footer">
+      <small>
+        &copy; 2021 Jam Box Studios
+      </small>
+    </footer>
   </div>
+  <script src="/js/main.js"></script>
+
 </body>
 
 </html>

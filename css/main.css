@@ -1,6 +1,31 @@
+:root {
+  --cl-bg-primary: #354b57;
+  --cl-bg-secondary: #fafafa;
+  --cl-txt-secondary: #fafafa;
+
+  --fs-content-dskt: 1.25rem;
+  --fs-content-mb: 0.7rem;
+  --fs-preferred: 3.5vw;
+  --fs-h1-dskt: 3.5rem;
+  --fs-h1-mb: 1rem;
+  --fs-h1-preferred: 6vw;
+  --fs-h2-dskt: 2.5rem;
+  --fs-h2-mb: 0.8rem;
+  --fs-h2-preferred: 5vw;
+  --fs-brand-dskt: 2.25rem;
+  --fs-brand-preferred: 5vw;
+  --fs-brand-mb: 1rem;
+}
 body {
-  font-family: 'Roboto', Helvetica, sans-serif;
-  background-color: grey;
+  box-sizing: border-box;
+  font-family: "Roboto", Helvetica, sans-serif;
+  background-color: var(--cl-bg-secondary);
+  font-size: clamp(
+    var(--fs-content-mb),
+    var(--fs-preferred),
+    var(--fs-content-dskt)
+  );
+  line-height: clamp(1.6, 1.4, 1.2);
   margin: 0;
   padding: 0;
 }
@@ -10,31 +35,128 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  font-family: 'Stick No Bills', 'Roboto', Helvetica, sans-serif;
+h6,
+#brand-name {
+  font-family: "Stick No Bills", "Roboto", Helvetica, sans-serif;
 }
-
+h1 {
+  padding-top: 5rem;
+  font-size: clamp(var(--fs-h1-mb), var(--fs-h1-preferred), var(--fs-h1-dskt));
+}
+h2 {
+  font-size: clamp(var(--fs-h2-mb), var(--fs-h2-preferred), var(--fs-h2-dskt));
+  margin-bottom: clamp(0.5rem, 2vw, 1rem);
+}
 .container {
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-img {
-  width: 100%;
+.text-content {
+  margin: 0 auto;
+  padding: 0 1em;
 }
-
-.main-nav ul {
+/* ---------------- skip links ---------------- */
+.skip-link a {
+  z-index: 10;
+  position: absolute;
+  top: -3em;
+  background-color: var(--cl-bg-primary);
+  color: var(--cl-txt-secondary);
+  padding: 0.2em 1em;
+  font-weight: bold;
+}
+.skip-link a:focus {
+  top: 0;
+}
+.skip-links {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
   margin: 0;
   padding: 0;
 }
+/* -------------- end: skip links ------------- */
+/* SECTION: navigation */
+
+/* header {
+} */
+
+.site-header,
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+/* .main-nav {f
+  justify-content: flex-end;
+} */
+#brand-name {
+  font-size: clamp(
+    var(--fs-brand-mb),
+    var(--fs-brand-preferred),
+    var(--fs-brand-dskt)
+  );
+}
+.site-header {
+  display: block;
+}
+.main-nav ul {
+  list-style: none;
+  display: none;
+}
+ul.hamburger {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 0 0 0;
+  margin-top: 0;
+  background-color: var(--cl-bg-secondary);
+  width: 100%;
+}
+span.hamburger-btn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: 0.4rem;
+  right: 0;
+  width: 24px;
+  min-height: 18px;
+  padding: 0.2rem 0.5rem;
+}
+.hamburger-btn:hover,
+.hamburger-btn:focus {
+  outline: 0.2rem solid var(--cl-bg-primary);
+}
+
+.hamburger-btn span {
+  display: block;
+  background-color: var(--cl-bg-primary);
+  height: 0.15rem;
+  width: 100%;
+}
 
 .main-nav ul li {
-  flex: 1;
+  /* flex: 1; */
   text-align: center;
+  display: block;
+  /* width: 100vw; */
+}
+.main-nav ul li a {
+  padding: 0.2em 1.2em;
+}
+/* .main-nav ul li:last-child {
+  justify-self: flex-end;
+}
+.main-nav ul li:last-child a {
+  padding-right: 0;
+} */
+
+.main-nav ul li a:hover,
+.main-nav ul li a:focus {
+  background-color: #354b57;
+  color: var(--cl-txt-secondary);
 }
 
 .main-nav ul li a {
@@ -44,12 +166,100 @@ img {
   font-size: 1.25rem;
 }
 
+@media screen and (min-width: 48rem) {
+  .site-header {
+    display: flex;
+  }
+  ul.hamburger {
+    display: flex !important;
+    flex-direction: row;
+  }
+  .main-nav {
+    display: flex;
+  }
+  .main-nav ul {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+    justify-content: space-around;
+    height: auto;
+    width: auto;
+  }
+  span.hamburger-btn {
+    display: none;
+  }
+}
+/* !SECTION: navigation  */
+/* -------------------- end ------------------- */
+/* SECTION: hero */
+.hero-section {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* background-color: #5a595f; */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, minmax(10vh, auto));
+  /* position: relative; */
+}
+
+img.banner {
+  width: 100%;
+  height: clamp(70vh, 5vw, 50vh);
+  object-fit: cover;
+  object-position: top center;
+  grid-column: 1/-1;
+  grid-row: 1/3;
+}
+
+.hero-content {
+  /* position: absolute; */
+  margin-top: auto;
+  grid-column: 1/-1;
+  grid-row: 2/3;
+  /* background-color: rgba(red, green, blue, alpha); */
+  /* background-color: #f5f5db; */
+  background: rgb(250, 250, 250);
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 0) 0%,
+    rgba(250, 250, 250, 0.6) 50%,
+    rgba(250, 250, 250, 0.8) 80%,
+    rgba(250, 250, 250, 1) 100%
+  );
+}
+/* !SECTION: hero */
+/* -------------------- end ------------------- */
+/* SECTION: owner */
+.owner ul {
+  list-style: none;
+  padding-left: 0;
+}
+.owner-info-label {
+  font-weight: bold;
+}
+/* !SECTION: owner */
+/* -------------------- end ------------------- */
+
+.site-footer {
+  padding: 2rem 0;
+}
+
+/* SECTION: contact form */
 form input,
 form textarea {
   display: block;
-  width: 100%;
+  /* width: 100%; */
+  width: clamp(90%, 6vw, 100%);
+  /* margin: 0 auto; */
   margin-bottom: 1rem;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
+  border: solid 0.05em var(--cl-bg-primary);
+}
+
+form input:focus,
+form textarea:focus {
+  outline: solid var(--cl-bg-primary) 2px;
 }
 
 form textarea {
@@ -59,13 +269,26 @@ form textarea {
   resize: none;
 }
 
-form button {
+/* form input[type="submit"], */
+button {
   background: none;
-  border: 2px solid black;
+  border: 2px solid var(--cl-bg-primary);
   padding: 1rem;
   text-transform: uppercase;
+
+  /* max-width: 6rem; */
+  cursor: pointer;
 }
 
-.site-footer {
-  padding: 2rem 0;
+button:hover,
+button:focus {
+  background-color: var(--cl-bg-primary);
+  color: var(--cl-txt-secondary);
+}
+/* !SECTION: contact form */
+/* -------------------- end ------------------- */
+/* ------------------ THANKS ------------------ */
+#thanks {
+  max-width: 1080px;
+  margin: 0 auto;
 }
